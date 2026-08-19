@@ -226,8 +226,41 @@ section.view.active{display:block; animation:fadein .25s ease;}
 .klist.tight{font-size:12px; line-height:1.65;}
 .klist.tight li{display:block;}
 .klist.tight li::before{content:"·"; margin-right:4px; color:var(--jade); font-weight:700;}
+
+.steplist{list-style:none; margin:0; padding:0; counter-reset:step;}
+.steplist li{
+  position:relative; padding:8px 0 8px 32px; font-size:13px; line-height:1.7;
+  border-bottom:1px dashed var(--line); counter-increment:step;
+}
+.steplist li:last-child{border-bottom:none;}
+.steplist li::before{
+  content:counter(step); position:absolute; left:0; top:8px;
+  width:22px; height:22px; border-radius:50%; background:var(--tangerine); color:#fff;
+  font-family:'Space Mono',monospace; font-weight:700; font-size:12px;
+  display:flex; align-items:center; justify-content:center;
+}
+.steplist li b{display:block; color:var(--jade); margin-bottom:2px; font-size:13.5px;}
 @media (max-width:420px){
   .checkgrid{grid-template-columns:1fr;}
+}
+
+/* ---- comparison table & bus tips ---- */
+.tablewrap{overflow-x:auto; border-radius:12px; border:1px solid var(--line); -webkit-overflow-scrolling:touch;}
+.cmp-table{width:100%; border-collapse:collapse; font-size:12px; min-width:460px;}
+.cmp-table th, .cmp-table td{padding:9px 10px; text-align:left; border-bottom:1px solid var(--line); vertical-align:top; line-height:1.5;}
+.cmp-table thead th{background:var(--ink); color:#fff; font-family:'Space Mono',monospace; font-weight:700; font-size:12px; position:sticky; top:0;}
+.cmp-table thead th:first-child{background:var(--ink);}
+.cmp-table tbody tr:last-child td{border-bottom:none;}
+.cmp-table tbody td:first-child{font-weight:700; color:var(--jade); white-space:nowrap; background:#F5FAF8;}
+.cmp-table tbody tr:nth-child(even) td{background:var(--paper-2);}
+.cmp-table tbody tr:nth-child(even) td:first-child{background:#EAF2EE;}
+
+.buscol{display:flex; flex-direction:column; gap:14px;}
+.busarea{background:var(--paper-2); border-radius:12px; padding:12px 14px;}
+.busarea .ba-title{font-weight:700; font-size:14px; margin-bottom:8px;}
+@media (min-width:520px){
+  .buscol{flex-direction:row; gap:12px;}
+  .busarea{flex:1;}
 }
 
 /* ---- Days ---- */
@@ -286,6 +319,8 @@ section.view.active{display:block; animation:fadein .25s ease;}
 .spot .top{display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; margin-bottom:4px;}
 .spot .nm{font-weight:700; font-size:15px;}
 .spot .note{font-size:12.5px; color:#4b4739; line-height:1.55; margin:4px 0 8px;}
+.hours-line{font-family:'Space Mono',monospace; font-size:11px; color:var(--jade); margin:3px 0; font-weight:700;}
+.avail-line{font-size:11px; color:var(--tangerine-d); font-weight:700; margin:3px 0;}
 .spot .btnrow{display:flex; gap:8px; flex-wrap:wrap;}
 
 .dayweather{
@@ -603,6 +638,98 @@ footer{text-align:center; padding:26px 20px 10px; font-size:11px; color:var(--st
     </div>
 
     <div class="card extra-card">
+      <h4>💳 T-money vs WOWPASS 交通卡怎麼選</h4>
+      <p style="font-size:12.5px;color:var(--stone);margin:0 0 10px;">兩者都能搭地鐵、公車、計程車，差別主要在「換匯」跟「退款」怎麼處理。首爾市區走動多，建議至少一人辦一張。</p>
+      <div class="tablewrap">
+        <table class="cmp-table">
+          <thead>
+            <tr><th></th><th>T-money</th><th>WOWPASS</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>適合誰</td><td>已經有韓元現金，只想單純儲值搭車</td><td>想省去換匯步驟，一張卡搞定交通＋消費</td></tr>
+            <tr><td>哪裡買</td><td>超商（CU／GS25／7-Eleven）約2,500–4,000₩</td><td>WOWPASS實體機（機場、明洞、弘大等熱門區域）</td></tr>
+            <tr><td>怎麼加值</td><td>超商／地鐵儲值機投現金加值</td><td>機台直接插外幣鈔票換算儲值，匯率通常比機場好</td></tr>
+            <tr><td>費用</td><td>卡片本身要付費，加值免手續費</td><td>辦卡費約5,000₩（達一定換匯金額常有減免）</td></tr>
+            <tr><td>能做什麼</td><td>地鐵／公車／計程車／部分超商</td><td>同左交通功能 ＋ 可當儲值卡在一般店家消費</td></tr>
+            <tr><td>沒用完怎麼辦</td><td>離境前到超商辦退款（扣手續費）</td><td>WOWPASS機台可直接退款換回外幣現金</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="klist" style="margin-top:10px;">
+        <li><b>共通</b>兩張卡都是「先儲值再扣款」，餘額不足會無法刷卡，記得留意餘額。</li>
+        <li><b>共通</b>兩人各辦一張比共用一張方便，尤其分開行動時不用互相等卡。</li>
+        <li><b>WOWPASS</b>機台目前多集中在首爾，濟州機場/市區未必找得到，建議在首爾期間辦好、濟州只需靠租車不太需要交通卡。</li>
+      </ul>
+    </div>
+
+    <div class="card extra-card">
+      <h4>🚌 濟州＆首爾搭公車，上車下車都要刷卡</h4>
+      <p style="font-size:12.5px;color:var(--stone);margin:0 0 10px;">最容易搞混的規則：韓國公車幾乎都是「上車刷一次、下車也要刷一次」，忘記下車刷卡通常不會馬上出事，但下次搭車會被自動扣一筆追加費用。</p>
+      <div class="buscol">
+        <div class="busarea">
+          <div class="ba-title">🍊 濟州</div>
+          <ul class="klist tight">
+            <li>自2024年10月起，濟州市內公車<b style="color:var(--coral);">全面不收現金</b>，一定要準備交通卡（T-money等），沒卡上不了車。</li>
+            <li>一般市內公車（干線／支線／觀光循環）為單一票價，上車刷一次即可完成扣款。</li>
+            <li>但下車還是建議刷一次「하차태그」，才能享有40分鐘內、最多2次的轉乘優惠。</li>
+            <li>급행버스（快速公車）、機場利木津屬<b>距離計費</b>，上下車都必須刷卡；忘記下車刷會在下次搭車時被扣最高追加費用。</li>
+            <li>從機場往市區有多條利木津／急行巴士，上車跟司機或看站牌確認方向別搭反。</li>
+          </ul>
+        </div>
+        <div class="busarea">
+          <div class="ba-title">🍁 首爾</div>
+          <ul class="klist tight">
+            <li>幾乎所有公車都是<b>距離計費</b>，上車刷卡、下車也一定要刷卡，兩段都不能省。</li>
+            <li>忘記下車刷卡，下次搭車會被扣最高里程費用，等於白白多花錢。</li>
+            <li>地鐵是進站、出站各刷一次閘門，邏輯跟公車「進出都刷」是一樣的概念。</li>
+            <li>公車和地鐵之間轉乘，下車/出站後約30分鐘內轉乘可折抵或免費，超時就會重新計費。</li>
+            <li>韓國公車普遍前門上車、後門下車；快到站記得提前按下車鈴（하차벨），不按有些站不一定會停。</li>
+            <li>報站不一定有英文語音，建議把地圖App開著盯站名，比較不會坐過站。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card extra-card">
+      <h4>🚕 叫計程車注意事項</h4>
+      <p style="font-size:12.5px;color:var(--stone);margin:0 0 10px;">韓國常用4款叫車App，各有適合的人，先挑好再出發比較不會臨時卡關。</p>
+      <div class="tablewrap">
+        <table class="cmp-table">
+          <thead>
+            <tr><th>App</th><th>特點與優缺點</th><th>車資</th><th>適合對象</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Kakao T</td><td>韓國市占最高、覆蓋廣車輛多；無中文介面，司機可能會打電話確認位置</td><td>平價</td><td>會韓文、有韓國門號或常去韓國的人</td></tr>
+            <tr><td>Uber</td><td>介面熟悉不需額外學習；下車車資多由司機手動輸入，需留意刷卡明細</td><td>平價</td><td>初次去韓國、不會韓文的人</td></tr>
+            <tr><td>K-ride</td><td>Kakao推出的外國人版，多語言介面＋翻譯功能，支援海外信用卡；價格較高</td><td>中高</td><td>不會韓文、求方便的新手</td></tr>
+            <tr><td>TADA</td><td>車型寬敞舒適（類似MPV）；只能在首爾／京畿城南／仁川和金浦機場叫車，價格最貴</td><td>高</td><td>帶長輩／小孩、有大件行李的人</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="klist" style="margin-top:10px;">
+        <li><b>扣款</b>叫車時會先出現「預先授權」預扣款，行程結束後才扣實際車資，看到兩筆通知是正常現象，不是重複收費。</li>
+        <li><b>PIN碼</b>開啟PIN碼驗證後，司機要輸入密碼才能開始行程，可避免司機還沒載到人就先計費。</li>
+        <li><b>收據</b>下車前跟司機說「영수증 주세요」（勇書證粗誰優），現場核對金額，避免司機誤輸入車資後求償無門。</li>
+      </ul>
+    </div>
+
+    <div class="card extra-card">
+      <h4>🍱 外送的民族（배달의민족）叫外送注意事項</h4>
+      <p style="font-size:12.5px;color:var(--stone);margin:0 0 10px;">飯店休息不想出門時很好用，第一次用建議照這個順序設定。</p>
+      <ol class="steplist">
+        <li><b>以訪客身分開始</b>下載App後不用註冊，直接點「訪客瀏覽／以訪客登入」，跳過會員登入跟優惠彈窗。</li>
+        <li><b>輸入韓文地址＋備註</b>複製飯店／民宿的韓文地址搜尋（只有英文地址可先用翻譯軟體轉成韓文）；詳細地址欄位填房號＋飯店名稱，飯店招牌是英文就填英文，方便外送員辨識。</li>
+        <li><b>設定取貨方式＋簡訊驗證</b>取貨方式建議選「面交取貨／親自領取」（직접 받을게요），避免外送員找不到人或進不了大樓。每次下單都要重新做手機簡訊驗證，用海外eSIM的人記得把手機「行動服務語音」切成台灣號碼，開數據漫遊並選韓國網路／Wi-Fi來接收簡訊（漫遊簡訊完全免費；網路不穩容易驗證失敗或App當掉）。</li>
+        <li><b>選付款方式</b>信用卡選「신용・체크카드」（信用卡・借記卡）→卡片類型切換成「해외카드／Global Payments」（境外發行卡）輸入卡號結帳，多數海外卡都能刷過；部分版本介面可直接選Apple Pay快速支付。</li>
+      </ol>
+      <ul class="klist" style="margin-top:10px;">
+        <li><b>先截圖</b>非會員無法查看歷史訂單，下單後務必截圖餐點內容、金額跟外送進度存底。</li>
+        <li><b>翻譯常出錯</b>機器翻譯容易失真（曾出現「年糕」被譯成「豆腐」、「血腸湯」被譯成「酸豆湯」這種離譜案例），建議搭配韓文原版介面再用外部翻譯軟體交叉確認。</li>
+        <li><b>準時下樓</b>外送員通常不能上樓，收到App通知或簡訊寫抵達了，要直接下樓到大廳或門口取餐，別讓人等太久。</li>
+      </ul>
+    </div>
+
+    <div class="card extra-card">
       <h4>📞 緊急與旅遊諮詢電話</h4>
       <div class="contact-grid">
         <div class="c"><div class="num">112</div><div class="lab">警察</div></div>
@@ -684,8 +811,14 @@ const DAYS = [
     ],
     stay:0,
     spots:[
-      {name:"濟州東門市場", kr:"제주동문시장", cat:"spot", note:"濟州最大傳統市場，地下樓有小吃街。招牌白帶魚切片、黑豬肉市街及新鮮橘子。早上抵達人比較少，可悠閒逛市場。適合KIKI先抵達時獨自探路。", map:"https://maps.app.goo.gl/S7QRCHVMz4fHXXaK6", navQ:"제주동문시장"},
-      {name:"東門市場海鹽可頌冰淇淋", kr:"솔브레", cat:"cafe", note:"市場內人氣熱點，招牌海鹽可頌螺旋冰淇淋。適合逛市場途中拿一支邊走邊吃，融化速度快建議早點食用。", map:"", navQ:"동문시장 솔브레"},
+      {name:"機場搭公車→飯店寄放行李", kr:"", cat:"spot", note:"KIKI一個人先降落，抵達濟州國際機場後搭公車前往WhistleLark。因為官方入住時間是16:00，先跟櫃檯寄放行李就好，不用等到正式入住才能出門。", map:"", navQ:""},
+      {name:"제주본토박이감자탕（午餐）", kr:"제주본토박이감자탕", cat:"rest", hours:"11:00–21:00（休息15:00–17:00）", closed:"週六、週日", note:"招牌馬鈴薯豬骨鍋，位於오복1길（고산동산一帶），濟州本地人常去的口袋名單。10/7是週三不受公休影響，但下次想再訪要避開週末。", navQ:"제주본토박이감자탕"},
+      {name:"올리브영 제주시청점（逛街）", kr:"올리브영 제주시청점", cat:"shop", hours:"約10:00–22:00", closed:"無", note:"就在감자탕餐廳附近，飯前飯後都可以順路逛。買齊面膜、防曬等保養品，戰利品可以先拎回飯店放。", navQ:"올리브영 제주시청점"},
+      {name:"⚠️提醒：大創買充電轉接頭", kr:"다이소", cat:"shop", hours:"約09:30–22:00", closed:"無", note:"順路去大創（다이소）買韓國轉接頭／充電頭，價格比機場或超商划算很多，濟州市區裡通常都能找到分店，可以趁逛올리브영的時候一起繞過去。忘記帶轉接頭的話這是最後方便補買的機會之一。", navQ:"다이소 제주시청"},
+      {name:"回飯店 Check-in 休息", kr:"", cat:"stay", note:"逛街如果有戰利品，先拿回WhistleLark放，順便正式辦理16:00 check-in，休息喘口氣，晚點再出門。", map:"", navQ:""},
+      {name:"쿠우 COO（買杜拜巧克力）", kr:"쿠우 COO", cat:"shop", hours:"10:00–18:00", closed:"無", note:"位於용두암길，龍頭岩步行30秒、龍淵橋海邊散步道旁，開放式生產室可以看到手作過程。純外帶，招牌是우베두쫀쿠、두바이버터떡，想買特定口味建議別太晚去，賣完就沒有。", map:"", navQ:"쿠우 COO 제주"},
+      {name:"식당 마요네즈（晚餐）", kr:"식당 마요네즈", cat:"rest", hours:"11:00–21:00（休息15:00–17:00，L.O.午餐14:20／晚餐20:10）", closed:"每月最後一個週日", note:"原사랑담은해물已改成這家，濟州人氣洋食餐廳，招牌豬排（돈테키／돈카츠）、肉丸義大利麵、蛋黃醬炒飯。位於老衡洞，離이호테우海邊、機場都近，阿蘭奇尼球偶爾會賣完。", map:"", navQ:"식당 마요네즈"},
+      {name:"濟州機場接UNA", kr:"제주국제공항", cat:"spot", note:"UNA的班機19:30降落濟州，晚餐後直接前往機場接機，兩人正式在濟州會合，一起回飯店。", map:"", navQ:"제주국제공항"},
     ],
     weather:"抵達當天多雲到晴，海風偏強，市場內建議薄外套，市場外走動很快就會覺得熱。"
   },
@@ -693,41 +826,44 @@ const DAYS = [
     flights:[],
     stayOut:0, stayIn:1,
     spots:[
-      {name:"濟州民俗五日市場", kr:"제주민속오일시장", cat:"spot", note:"濟州傳統五日市，逢尾數為2、7日開市。販售新鮮橘子、海產、點心及日用雜貨，現金比信用卡方便。", map:"https://maps.app.goo.gl/fPF1trtyRx8Sjhd9A", navQ:"제주민속오일시장"},
-      {name:"海鮮麵 Noraba", kr:"노라바", cat:"rest", note:"招牌海鮮拉麵，湯頭濃郁帶海鮮鮮味。中午時段容易排隊，建議提早或避開11:30–13:00尖峰。", map:"", navQ:"노라바 제주"},
-      {name:"海螺刀削麵", kr:"신제주보말칼국수", cat:"rest", note:"招牌海螺刀削麵，湯頭清口不膩，早餐／午餐適合。注意週日（W7）公休，前往前請確認當天是否有開。", map:"https://maps.app.goo.gl/HrwwawfyjhwjeYer9", navQ:"신제주보말칼국수"},
-      {name:"香水咖啡廳 Aewol ASSISI", kr:"아씨시", cat:"cafe", note:"香水主題咖啡廳兼選貨小店，可現場調香水、選購精油香水。招牌飲品為花香拿鐵，適合安排在購物行程中。", map:"https://maps.app.goo.gl/e6nsstPMYbJG2JFx7", navQ:"애월 아씨시"},
-      {name:"濟州黑豬（韓林店）", kr:"뽈살집한림점", cat:"rest", note:"濟州黑豬專門店，招牌烤黑豬三層肉及里肌肉，可搭配湯麵作為收尾。晚上用餐人多，建議提早到或電話確認是否需要候位。", map:"", navQ:"뽈살집한림점"},
+      {name:"濟州東門市場（備案）", kr:"제주동문시장", cat:"spot", hours:"08:00–21:00", closed:"無", note:"10/8尾數是8，濟州民俗五日市場（逢2、7日開市）當天沒開，改成回東門市場走走或補買昨天沒逛完的。地下小吃街、橘子、海鮮乾貨都在這裡。", map:"https://maps.app.goo.gl/S7QRCHVMz4fHXXaK6", navQ:"제주동문시장"},
+      {name:"大蒜麵包 Audrant Bakery（備案）", kr:"오드랑베이커리", cat:"cafe", hours:"07:00–22:00", closed:"無", note:"另一個備案方向：往咸德（Hamdeok）繞去吃大蒜麵包，招牌大蒜法棍及大蒜奶油夾餡，早上7點開門，想吃最新鮮建議早點到。", navQ:"오드랑베이커리 함덕"},
+      {name:"海螺刀削麵", kr:"신제주보말칼국수", cat:"rest", hours:"08:00–15:00", closed:"週日（W7）", note:"招牌海螺刀削麵，湯頭清口不膩，早餐／午餐適合。前往前請再次確認當天是否有開。", map:"https://maps.app.goo.gl/HrwwawfyjhwjeYer9", navQ:"신제주보말칼국수"},
+      {name:"海鮮麵 Noraba", kr:"노라바", cat:"rest", hours:"10:00–14:00、15:00–16:30", closed:"無", note:"招牌海鮮拉麵，湯頭濃郁帶海鮮鮮味。營業時間中間有休息，中午時段容易排隊，建議提早或避開11:30–13:00尖峰。", map:"", navQ:"노라바 제주"},
+      {name:"香水咖啡廳 Aewol ASSISI", kr:"아씨시", cat:"cafe", hours:"11:00–19:00", closed:"無", note:"香水主題咖啡廳兼選貨小店，可現場調香水、選購精油香水。招牌飲品為花香拿鐵，適合安排在購物行程中。", map:"https://maps.app.goo.gl/e6nsstPMYbJG2JFx7", navQ:"애월 아씨시"},
+      {name:"海鮮拉麵 놀맨 Nolman（備案）", kr:"놀맨", cat:"rest", hours:"10:00–15:00（週五六到16:00）", closed:"每週二", note:"如果沒吃到Noraba，可以改吃這家。位於韓潭海邊（한담해변）正前方，全戶外座位邊吃邊看海。招牌是海鮮拉麵，蟹、蝦、淡菜料多實在，當天若老闆有捕到章魚還會加章魚。採號碼牌點餐，吃完需自己歸還餐具。風雨太大或天氣太熱可能提早收攤。", map:"https://www.google.com/maps/search/?api=1&query=제주시+애월읍+애월로1길+24", navQ:"놀맨 애월"},
+      {name:"濟州黑豬（韓林店）", kr:"뽈살집한림점", cat:"rest", hours:"15:00–22:00", closed:"無", note:"濟州黑豬專門店，招牌烤黑豬三層肉及里肌肉，可搭配湯麵作為收尾。晚上用餐人多，建議提早到或電話確認是否需要候位。", map:"", navQ:"뽈살집한림점"},
     ],
     weather:"涯月沿海風大，傍晚看海建議加一件防風外套，日落時分溫差會明顯下降。"
   },
   { n:3, date:"10/09（五）", city:"西歸浦", cshort:"西歸浦",
     flights:[], stayOut:1, stayIn:2,
     spots:[
-      {name:"龍頭海岸", kr:"용머리해안", cat:"spot", note:"形狀像龍頭俯入海中的火山岩海岸，可沿海岸步道漫步，需注意潮汐時間，漲潮時部分步道可能淹水。", map:"https://maps.app.goo.gl/cpUAsWFeeGSKFzvc7", navQ:"용머리해안"},
-      {name:"正房瀑布", kr:"정방폭포", cat:"spot", note:"韓國唯一直接注入大海的瀑布，雷雨後水量會更充沛壯觀。地面可能濕滑，建議穿防滑鞋。", map:"https://maps.app.goo.gl/CxEE4cLSC4dQaUzr6", navQ:"정방폭포"},
-      {name:"西歸浦橘花閣樓", kr:"귤꽃다락", cat:"cafe", note:"橘園改造咖啡廳，招牌橘子相關飲品與甜點，秋季可賞橘子果園景色，環境寧靜適合休息。", map:"https://maps.app.goo.gl/qbB41iFbghRwjiEt7", navQ:"귤꽃다락"},
-      {name:"蔬菜麵包咖啡廳 濟州堂", kr:"제주당", cat:"cafe", note:"蔬菜麵包主題咖啡廳，招牌蔬菜麵包、手滴咖啡，健康取向，圖書風空間適合休息。", map:"https://maps.app.goo.gl/6a7rW77G4QaDRsYp6", navQ:"제주당 서귀포"},
-      {name:"白帶魚 올레왕갈치", kr:"올레왕갈치", cat:"rest", note:"招牌白帶魚定食，多人推薦白帶魚燒烤或紅燒。魚刺較多，不方便吃魚刺的人可先告知店家。目前狀態未預約，建議提前確認是否需候位。", map:"https://maps.app.goo.gl/frhh5Wj1Lzypr1gV9", navQ:"올레왕갈치"},
-      {name:"烤牛腸 Ppolsaljip", kr:"뽈살집", cat:"rest", note:"招牌烤牛腸，店內烤得外脆內軟。晚上點餐選項，店內有煙味，不習慣的人可先做心理準備。可與白帶魚二選一，另一家留作備案。", map:"https://maps.app.goo.gl/1Ntt7s1wUf9Mb1Fz5", navQ:"뽈살집 서귀포"},
+      {name:"龍頭海岸", kr:"용머리해안", cat:"spot", hours:"09:00–17:00", closed:"無", note:"形狀像龍頭俯入海中的火山岩海岸，可沿海岸步道漫步，需注意潮汐時間，漲潮時部分步道可能封閉或不開放進入。", map:"https://maps.app.goo.gl/cpUAsWFeeGSKFzvc7", navQ:"용머리해안"},
+      {name:"正房瀑布", kr:"정방폭포", cat:"spot", hours:"09:00–17:20", closed:"無", note:"韓國唯一直接注入大海的瀑布，雷雨後水量會更充沛壯觀。地面可能濕滑，建議穿防滑鞋。", map:"https://maps.app.goo.gl/CxEE4cLSC4dQaUzr6", navQ:"정방폭포"},
+      {name:"西歸浦橘花閣樓", kr:"귤꽃다락", cat:"cafe", hours:"10:00–18:40（L.O.18:00）", closed:"無", note:"橘園改造咖啡廳，招牌橘子相關飲品與甜點，秋季可賞橘子果園景色，環境寧靜適合休息。", map:"https://maps.app.goo.gl/qbB41iFbghRwjiEt7", navQ:"귤꽃다락"},
+      {name:"蔬菜麵包咖啡廳 濟州堂", kr:"제주당", cat:"cafe", hours:"10:00–21:00", closed:"無", note:"蔬菜麵包主題咖啡廳，招牌蔬菜麵包、手滴咖啡，健康取向，圖書風空間適合休息。", map:"https://maps.app.goo.gl/6a7rW77G4QaDRsYp6", navQ:"제주당 서귀포"},
+      {name:"白帶魚 올레왕갈치", kr:"올레왕갈치", cat:"rest", hours:"10:00–22:00（L.O.21:00）", closed:"無", note:"招牌白帶魚定食，多人推薦白帶魚燒烤或紅燒。魚刺較多，不方便吃魚刺的人可先告知店家。目前狀態未預約，建議提前確認是否需候位。", map:"https://maps.app.goo.gl/frhh5Wj1Lzypr1gV9", navQ:"올레왕갈치"},
+      {name:"黑豬特殊部位 Ppolsaljip", kr:"뽈살집", cat:"rest", hours:"15:00–24:00", closed:"無", note:"招牌뽈살（豬頰肉）等黑豬特殊部位，還有천겹살、비단살、눈썹살、꽃살等多種罕見部位可單點，也可點모듬스페셜（綜合拼盤）一次吃到多種口感。晚上點餐選項，位於西歸浦每日偶來市場附近。可與白帶魚二選一，另一家留作備案。", map:"https://maps.app.goo.gl/1Ntt7s1wUf9Mb1Fz5", navQ:"뽈살집 서귀포"},
     ],
     weather:"西歸浦沿海步道偶有海浪飛濺，鞋子建議防滑防水，午後偶有短暫陣雨。"
   },
   { n:4, date:"10/10（六）", city:"西歸浦→城山", cshort:"石頭公園",
     flights:[], stayOut:2, stayIn:3,
     spots:[
-      {name:"西歸浦每日偶來市場", kr:"서귀포 매일올레시장", cat:"spot", note:"西歸浦市區的傳統市場，可買到柑橘類點心、蜂蜜製品及各式熟食小吃，適合早上途中採購後直接前往附近景點。", map:"https://maps.app.goo.gl/HAHVfU89cNbkQ6Nb7", navQ:"서귀포 매일올레시장"},
-      {name:"濟州石頭文化公園", kr:"제주 돌문화공원", cat:"spot", note:"展示濟州獨特的石頭文化，園區內有許多돌하르방造型石像，適合散步拍照。注意週一（W1）公休。", map:"", navQ:"제주 돌문화공원"},
-      {name:"山君不離", kr:"산굼부리", cat:"spot", note:"奇特的下陷式火山口，10月正是芒草的絕佳賞期，金黃芒草隨風搖曳的景色很適合這次旅行。地形需上下步道，建議穿舒適好走的鞋。", map:"", navQ:"산굼부리"},
+      {name:"西歸浦每日偶來市場", kr:"서귀포 매일올레시장", cat:"spot", hours:"07:00–21:00", closed:"無", note:"西歸浦市區的傳統市場，可買到柑橘類點心、蜂蜜製品及各式熟食小吃，適合早上途中採購後直接前往附近景點。", map:"https://maps.app.goo.gl/HAHVfU89cNbkQ6Nb7", navQ:"서귀포 매일올레시장"},
+      {name:"濟州石頭文化公園", kr:"제주 돌문화공원", cat:"spot", hours:"09:00–18:00", closed:"週一（W1）", note:"展示濟州獨特的石頭文化，園區內有許多돌하르방造型石像，適合散步拍照。", map:"", navQ:"제주 돌문화공원"},
+      {name:"山君不離", kr:"산굼부리", cat:"spot", hours:"09:00–18:00", closed:"無", note:"奇特的下陷式火山口，10月正是芒草的絕佳賞期，金黃芒草隨風搖曳的景色很適合這次旅行。地形需上下步道，建議穿舒適好走的鞋。", map:"", navQ:"산굼부리"},
     ],
     weather:"中部山區風更明顯，芒草季節早晚偏涼，建議帽子＋防風外套。"
   },
   { n:5, date:"10/11（日）", city:"城山・牛島", cshort:"日出峰+牛島",
     flights:[], stayOut:3, stayIn:4,
     spots:[
-      {name:"鮑魚粥 吾照海女之家", kr:"오조해녀의집", cat:"rest", note:"招牌鮑魚粥，使用海女現撈鮑魚熬煮，味道清爽清淡，適合作為清早或酒後修復食。早上前往人較少，比較寬敞安靜。", map:"https://maps.app.goo.gl/pX6jtyRBELNUn4we9", navQ:"오조해녀의집"},
-      {name:"城山日出峰", kr:"성산 일출봉", cat:"spot", note:"UNESCO世界自然遺產，登頂約20–30分鐘。日出時刻人潮較少景色最美，建議提早前往，同區可順道安排海女表演。", map:"", navQ:"성산일출봉"},
-      {name:"牛島", kr:"우도", cat:"act", note:"從城山港搭渡輪約15分鐘即可抵達，島上可租電動自行車繞島，並品嚐當地著名的花生冰淇淋。請留意最後一班回程渡輪時間，以免錯過。", map:"", navQ:"우도"},
+      {name:"鮑魚粥 吾照海女之家", kr:"오조해녀의집", cat:"rest", hours:"07:00–18:00", closed:"無", note:"招牌鮑魚粥，使用海女現撈鮑魚熬煮，味道清爽清淡，適合作為清早或酒後修復食。早上前往人較少，比較寬敞安靜。", map:"https://maps.app.goo.gl/pX6jtyRBELNUn4we9", navQ:"오조해녀의집"},
+      {name:"城山日出峰", kr:"성산 일출봉", cat:"spot", hours:"05:00–19:00（售票至18:00，10月屬春秋季時段）", closed:"每月第一個週一（遇假日順延一天）", note:"UNESCO世界自然遺產，登頂約20–30分鐘。日出時刻人潮較少景色最美，建議提早前往，同區可順道安排海女表演。", map:"", navQ:"성산일출봉"},
+      {name:"牛島", kr:"우도", cat:"act", hours:"渡輪首航約08:00，末班約17:30左右（依季節、天候調整）", closed:"無固定公休，天候不佳可能停航", note:"從城山港搭渡輪約15分鐘即可抵達，島上可租電動自行車繞島，並品嚐當地著名的花生冰淇淋。搭船需攜帶身分證件，租來的汽車無法上島（僅可在島上另租電動車／自行車）。請留意最後一班回程渡輪時間，以免錯過。", map:"", navQ:"우도"},
+      {name:"還車：濟州天使租車", kr:"제주엔젤카", cat:"act", hours:"還車時間 20:00", closed:"", note:"租期10/8 09:00–10/11 20:00到今天結束，記得預留緩衝時間，19:30前抵達比較保險，油量加回跟取車時同一格。多數不在機場直接還車，需搭店家接駁車到車庫，下船/移動時提早抓時間。", map:"", navQ:"제주엔젤카"},
     ],
     weather:"牛島海風強勁，渡輪偶因風浪延駛，建議預留備用時間，防風外套必備。"
   },
@@ -735,20 +871,20 @@ const DAYS = [
     flights:[{who:"共同", route:"CJU ✈ GMP", num:"KE1118", time:"07:00 → 08:15", termOut:"濟州 國內線", termIn:"金浦 國內線", note:"濟州國內線飛金浦機場，兩人同班機轉戰首爾"}],
     stayOut:4, stayIn:5,
     spots:[
-      {name:"宇進解酒湯", kr:"우진해장국", cat:"rest", note:"招牌解酒湯，24小時營業，是醒酒早餐的好選項。因為要趕07:00的班機，這頓算是超早的早餐，記得提前抓好時間。", map:"https://maps.app.goo.gl/kz6kjSVXiDz3GSX3A", navQ:"우진해장국"},
-      {name:"Verish 無鋼圈內衣", kr:"베리쉬", cat:"shop", note:"韓國人氣無鋼圈內衣品牌，適合購買自用或伴手禮，建議事先查好自己的韓國尺碼及尺寸對應。", map:"https://maps.app.goo.gl/Ng6oABMpFGJNCgqz9", navQ:"베리쉬"},
-      {name:"Maman Gelato（聖水店）", kr:"마망젤라또 성수점", cat:"cafe", note:"位於首爾聖水洞的義式冰淇淋專門店，招牌義式經典口味，到首爾當天可作為下午茶點。", map:"https://maps.app.goo.gl/fvzQtvQsCxhVsMYQ6", navQ:"마망젤라또 성수점"},
-      {name:"馬鈴薯煎餅 Sinsajeon", kr:"신사전", cat:"rest", note:"招牌馬鈴薯煎餅及蜂巢瑪格麗（甜點），當地人氣小吃店。深夜當宵夜人多，怕辣可先詢問。", map:"https://maps.app.goo.gl/PtuJooxBwZJsLMYW6", navQ:"신사전"},
-      {name:"奶油熟成豬 Ppasam", kr:"빠삼", cat:"rest", note:"招牌奶油熟成豬肩肉，結合熟成技法讓肉質更軟嫩多汁，晚餐／宵夜選項，可與馬鈴薯煎餅二選一。", map:"https://maps.app.goo.gl/Xis5QmdAvRW9wqwBA", navQ:"빠삼"},
+      {name:"提早前往濟州機場", kr:"", cat:"spot", note:"07:00的班機，扣掉還車、接駁、安檢時間，這天不排早餐店，直接提早出發去機場比較穩。國內線通常建議起飛前1小時到，實際抓的時間可以再往前一點。", map:"", navQ:""},
+      {name:"Verish 無鋼圈內衣", kr:"베리쉬", cat:"shop", hours:"11:00–22:00", closed:"無", note:"韓國人氣無鋼圈內衣品牌，適合購買自用或伴手禮，建議事先查好自己的韓國尺碼及尺寸對應。", map:"https://maps.app.goo.gl/Ng6oABMpFGJNCgqz9", navQ:"베리쉬"},
+      {name:"Maman Gelato（聖水店）", kr:"마망젤라또 성수점", cat:"cafe", hours:"11:30–21:00", closed:"無", note:"位於首爾聖水洞的義式冰淇淋專門店，招牌義式經典口味，到首爾當天可作為下午茶點。", map:"https://maps.app.goo.gl/fvzQtvQsCxhVsMYQ6", navQ:"마망젤라또 성수점"},
+      {name:"馬鈴薯煎餅 Sinsajeon", kr:"신사전", cat:"rest", hours:"11:00–25:00（凌晨1點）", closed:"無", note:"招牌馬鈴薯煎餅及蜂巢瑪格麗（甜點），當地人氣小吃店。深夜當宵夜人多，怕辣可先詢問。", map:"https://maps.app.goo.gl/PtuJooxBwZJsLMYW6", navQ:"신사전"},
+      {name:"奶油熟成豬 Ppasam", kr:"빠삼", cat:"rest", hours:"16:30–22:30", closed:"無", note:"招牌奶油熟成豬肩肉，結合熟成技法讓肉質更軟嫩多汁，晚餐／宵夜選項，可與馬鈴薯煎餅二選一。", map:"https://maps.app.goo.gl/Xis5QmdAvRW9wqwBA", navQ:"빠삼"},
     ],
     weather:"首爾入秋轉涼，早晚溫差明顯大於濟州，下飛機記得多加一層外套。"
   },
   { n:7, date:"10/13（二）", city:"首爾", cshort:"市場+韓屋",
     flights:[],
     spots:[
-      {name:"廣藏市場", kr:"광장시장", cat:"spot", note:"首爾最著名的傳統市場之一，招牌麻藥飯卷、綠豆煎餅、生牛肉。人潮集中，現金交易方便，建議先備好現金。", map:"", navQ:"광장시장"},
-      {name:"北村韓屋村", kr:"북촌 한옥마을", cat:"spot", note:"韓屋集中的傳統村落，適合拍照取景。部分巷弄為實際住宅，請保持安靜尊重居民。上午前往人潮相對較少。", map:"", navQ:"북촌한옥마을"},
-      {name:"韓牛熟成肉館 by 해봉", kr:"숙성육관by해봉", cat:"rest", note:"韓牛熟成肉專門店，招牌熟成韓牛，可點不同部位比較口感，慢慢品嚐。原排乙支路烤肉店已改成這家，晚餐選項。", map:"https://maps.app.goo.gl/kUZMNjqF4WfJvEx37", navQ:"숙성육관 by 해봉"},
+      {name:"廣藏市場", kr:"광장시장", cat:"spot", hours:"09:00–22:30（各攤位營業時間不一）", closed:"無（部分攤位週日公休）", note:"首爾最著名的傳統市場之一，招牌麻藥飯卷、綠豆煎餅、生牛肉。人潮集中，現金交易方便，建議先備好現金。", map:"", navQ:"광장시장"},
+      {name:"北村韓屋村", kr:"북촌 한옥마을", cat:"spot", hours:"村落本身全天可自由參觀；官方資訊中心約10:00–17:00", closed:"無", note:"韓屋集中的傳統村落，適合拍照取景。部分巷弄為實際住宅，請保持安靜尊重居民。上午前往人潮相對較少。", map:"", navQ:"북촌한옥마을"},
+      {name:"韓牛熟成肉館 by 해봉", kr:"숙성육관by해봉", cat:"rest", hours:"平日11:30–22:00（休息14:30–17:30，L.O.21:00）／週末12:00–22:00（L.O.21:00）", closed:"無固定公休（部分連假可能公休）", note:"⚠️實際位於首爾麻浦區公德（염리동），並不在乙支路，跟北村韓屋村有一段車程距離，前往前建議先確認交通方式與時間。招牌熟成韓牛，可點不同部位比較口感，慢慢品嚐。原排乙支路烤肉店已改成這家，晚餐選項。", map:"https://maps.app.goo.gl/kUZMNjqF4WfJvEx37", navQ:"숙성육관 by 해봉"},
     ],
     weather:"首爾秋日晴朗機率高，適合韓屋村拍照，午後紫外線仍強，防曬別忘。"
   },
@@ -769,58 +905,64 @@ const DAYS = [
 
 // mark stays out/in text helper computed already inline
 
-const FOOD_AREAS = ["全部","濟州市","涯月","西歸浦・城山","牛島","首爾","其他備選"];
+const FOOD_AREAS = ["全部","濟州市","涯月","西歸浦・城山","牛島","首爾","外送","其他備選"];
 
 const FOOD = [
   // 濟州市
-  {area:"濟州市", name:"雞腳", kr:"재팔이네닭발", cat:"rest", backup:true, note:"招牌無骨雞腳（辣味為主），可選辣度，搭配起司炒飯或炒烏龍麵墊底。怕辣可先詢問是否有不辣版本。", navQ:"재팔이네닭발"},
-  {area:"濟州市", name:"馬鈴薯排骨湯", kr:"못잊어감자탕", cat:"rest", backup:true, note:"招牌馬鈴薯排骨鍋，鍋內有大塊馬鈴薯和排骨肉，吃完可加白飯成炒飯，單鍾晚餐選項。", navQ:"못잊어감자탕"},
-  {area:"濟州市", name:"倫敦貝果博物館", kr:"런던베이글뮤지엄 제주점", cat:"cafe", backup:true, note:"倫敦貝果名店濟州分店，招牌原味、藍莓貝果搭配奶油乳酪醬，十分受歡迎，常需現場抽號，建議一開門就到。", navQ:"런던베이글뮤지엄 제주점"},
+  {area:"首爾", name:"雞腳", kr:"재팔이네닭발", cat:"rest", backup:true, hours:"12:00–22:00", closed:"無", note:"招牌無骨雞腳（辣味為主），可選辣度，搭配起司炒飯或炒烏龍麵墊底。怕辣可先詢問是否有不辣版本。", navQ:"재팔이네닭발"},
+  {area:"濟州市", name:"馬鈴薯排骨湯", kr:"못잊어감자탕", cat:"rest", backup:true, hours:"17:00–23:00", closed:"每週二（W2）", note:"招牌馬鈴薯排骨鍋，鍋內有大塊馬鈴薯和排骨肉，吃完可加白飯成炒飯，單鍾晚餐選項。", navQ:"못잊어감자탕"},
+  {area:"濟州市", name:"倫敦貝果博物館", kr:"런던베이글뮤지엄 제주점", cat:"cafe", backup:true, hours:"08:00–18:00", closed:"無", note:"倫敦貝果名店濟州分店，招牌原味、藍莓貝果搭配奶油乳酪醬，十分受歡迎，常需現場抽號，建議一開門就到。", navQ:"런던베이글뮤지엄 제주점"},
   {area:"濟州市", name:"駱駝咖啡（濟州店）", kr:"카멜커피 제주점", cat:"cafe", backup:true, note:"韓國連鎖人氣咖啡，濟州分店環境寬敞好拍照，可作為市區移動途中的咖啡補給站。", map:"https://maps.app.goo.gl/ySwGxBHH6KVrtbRL7", navQ:"카멜커피 제주점"},
+  {area:"濟州市", name:"濟州東門市場", kr:"제주동문시장", cat:"spot", backup:true, hours:"08:00–21:00", closed:"無", note:"濟州最大傳統市場，地下樓有小吃街。招牌白帶魚切片、黑豬肉市街及新鮮橘子，原Day1行程改掉後留在這裡當備案，有空檔可以順路逛。", map:"https://maps.app.goo.gl/S7QRCHVMz4fHXXaK6", navQ:"제주동문시장"},
+  {area:"濟州市", name:"東門市場海鹽可頌冰淇淋", kr:"솔브레", cat:"cafe", backup:true, hours:"11:00–19:00", closed:"無", note:"東門市場內人氣熱點，招牌海鹽可頌螺旋冰淇淋，如果順路去東門市場可以一起吃。", navQ:"동문시장 솔브레"},
   // 涯月
-  {area:"涯月", name:"涯月 Haejigae Cafe", kr:"해지개 카페", cat:"cafe", backup:true, note:"涯月海邊咖啡廳，大片落地窗面海景，招牌手滴咖啡、檸檬水，適合日落時段前往看夕陽。", navQ:"해지개카페"},
-  {area:"涯月", name:"涯月 Beryl", kr:"베릴", cat:"cafe", backup:true, note:"涯月氣氛咖啡廳，室內設計簡約有風格，招牌手工蛋糕、手滴咖啡，適合拍照打卡。", navQ:"애월 베릴"},
-  {area:"涯月", name:"大蒜麵包 Audrant Bakery", kr:"오드랑베이커리", cat:"cafe", backup:true, note:"濟州大蒜麵包專門店，招牌大蒜法棍麵包、大蒜奶油夾餡。早上7點開門，想吃到最新鮮的建議早點到。", navQ:"오드랑베이커리"},
-  {area:"涯月", name:"House Rec Store", kr:"집의기록 상점", cat:"cafe", backup:true, note:"蛋塔、可麗露專賣，無內用純外帶店。", navQ:"집의기록 상점"},
-  {area:"涯月", name:"繡球花／芒草咖啡廳 Manor Blanc", kr:"마노르블랑", cat:"cafe", backup:true, note:"庭園景觀咖啡廳，依季節輪替繡球花、芒草等花草景致，適合悠閒拍照喝咖啡。", map:"https://maps.app.goo.gl/c4LzvdAtN61Hrd4t5", navQ:"마노르블랑"},
+  {area:"涯月", name:"涯月 Haejigae Cafe", kr:"해지개 카페", cat:"cafe", backup:true, note:"涯月海邊咖啡廳，大片落地窗面海景，招牌手滴咖啡、檸檬水，適合日落時段前往看夕陽。營業時間請以Naver地圖現場確認。", navQ:"해지개카페"},
+  {area:"涯月", name:"涯月 Beryl", kr:"베릴", cat:"cafe", backup:true, hours:"11:00–18:30", closed:"無", note:"涯月氣氛咖啡廳，室內設計簡約有風格，招牌手工蛋糕、手滴咖啡，適合拍照打卡。", navQ:"애월 베릴"},
+  {area:"濟州市", name:"大蒜麵包 Audrant Bakery", kr:"오드랑베이커리", cat:"cafe", backup:true, hours:"07:00–22:00", closed:"無", note:"位於咸德（Hamdeok）海邊，濟州大蒜麵包專門店，招牌大蒜法棍麵包、大蒜奶油夾餡。早上7點開門，想吃到最新鮮的建議早點到。", navQ:"오드랑베이커리 함덕"},
+  {area:"涯月", name:"House Rec Store", kr:"집의기록 상점", cat:"cafe", backup:true, hours:"13:00–17:00", closed:"週三、週四（W3、W4）", note:"蛋塔、可麗露專賣，無內用純外帶店。", navQ:"집의기록 상점"},
+  {area:"涯月", name:"繡球花／芒草咖啡廳 Manor Blanc", kr:"마노르블랑", cat:"cafe", backup:true, note:"庭園景觀咖啡廳，依季節輪替繡球花、芒草等花草景致，適合悠閒拍照喝咖啡。營業時間請以Naver地圖現場確認。", map:"https://maps.app.goo.gl/c4LzvdAtN61Hrd4t5", navQ:"마노르블랑"},
   // 西歸浦・城山
-  {area:"西歸浦・城山", name:"白帶魚 올레왕갈치", kr:"올레왕갈치", cat:"rest", backup:false, note:"Day3已排定晚餐，招牌白帶魚燒烤或紅燒。", navQ:"올레왕갈치"},
-  {area:"西歸浦・城山", name:"烤牛腸 Ppolsaljip", kr:"뽈살집", cat:"rest", backup:true, note:"Day3備案，招牌烤牛腸，店內烤得外脆內軟，晚間有煙味。", navQ:"뽈살집 서귀포"},
-  {area:"西歸浦・城山", name:"鮑魚粥 吾照海女之家", kr:"오조해녀의집", cat:"rest", backup:false, note:"Day5早餐已排定，海女現撈鮑魚粥，清爽清淡。", navQ:"오조해녀의집"},
-  {area:"西歸浦・城山", name:"生魚片 섭지코지로", kr:"섭지코지로", cat:"rest", backup:true, note:"位於城山섭지코지一帶，招牌新鮮生魚片，適合安排在牛島行程前後。", map:"https://maps.app.goo.gl/kG4yghvfdNbB5zZE6", navQ:"섭지코지로"},
-  {area:"西歸浦・城山", name:"Ae-in柑橘園咖啡廳", kr:"제주에인감귤밭 카페", cat:"cafe", backup:true, note:"西歸浦柑橘園改造咖啡廳，可在橘子樹下喝咖啡拍照，秋季正是橘子季。", map:"https://maps.app.goo.gl/xVF3Vo2kuFG5SnQ3A", navQ:"제주에인감귤밭카페"},
-  {area:"西歸浦・城山", name:"백구옥（海膽飯捲）", kr:"백구옥", cat:"rest", backup:true, note:"位於濟州市區Gujwa-eup平岱，靠近海邊公路，接近城山日出峰一帶。百年古厝改造，招牌是海膽飯捲，也可加點魷魚天婦羅。營業時間約11:00–17:00（最後點餐約16:00），不接受預約與外送，食材售罄會提早收店，前往前建議先用Naver確認當日是否有開。", navQ:"백구옥 구좌"},
+  {area:"西歸浦・城山", name:"白帶魚 올레왕갈치", kr:"올레왕갈치", cat:"rest", backup:false, hours:"10:00–22:00（L.O.21:00）", closed:"無", note:"Day3已排定晚餐，招牌白帶魚燒烤或紅燒。", navQ:"올레왕갈치"},
+  {area:"西歸浦・城山", name:"黑豬特殊部位 Ppolsaljip", kr:"뽈살집", cat:"rest", backup:true, hours:"15:00–24:00", closed:"無", note:"Day3備案，招牌뽈살（豬頰肉）等黑豬特殊部位拼盤，非烤牛腸。", navQ:"뽈살집 서귀포"},
+  {area:"西歸浦・城山", name:"鮑魚粥 吾照海女之家", kr:"오조해녀의집", cat:"rest", backup:false, hours:"07:00–18:00", closed:"無", note:"Day5早餐已排定，海女現撈鮑魚粥，清爽清淡。", navQ:"오조해녀의집"},
+  {area:"西歸浦・城山", name:"生魚片 섭지코지로", kr:"섭지코지로", cat:"rest", backup:true, note:"位於城山섭지코지一帶，招牌新鮮生魚片，適合安排在牛島行程前後。營業時間請以Naver地圖現場確認。", map:"https://maps.app.goo.gl/kG4yghvfdNbB5zZE6", navQ:"섭지코지로"},
+  {area:"西歸浦・城山", name:"Ae-in柑橘園咖啡廳", kr:"제주에인감귤밭 카페", cat:"cafe", backup:true, note:"西歸浦柑橘園改造咖啡廳，可在橘子樹下喝咖啡拍照，秋季正是橘子季。營業時間請以Naver地圖現場確認。", map:"https://maps.app.goo.gl/xVF3Vo2kuFG5SnQ3A", navQ:"제주에인감귤밭카페"},
+  {area:"西歸浦・城山", name:"백구옥（海膽飯捲）", kr:"백구옥", cat:"rest", backup:true, hours:"約11:00–17:00（L.O.約16:00）", closed:"不定期（食材售罄提早收店）", note:"位於濟州市區Gujwa-eup平岱，靠近海邊公路，接近城山日出峰一帶。百年古厝改造，招牌是海膽飯捲，也可加點魷魚天婦羅。不接受預約與外送，前往前建議先用Naver確認當日是否有開。", navQ:"백구옥 구좌"},
   // 牛島
-  {area:"牛島", name:"Sumsonai", kr:"우도섬소나이", cat:"rest", backup:true, note:"牛島上的餐廳，環島途中補充體力的選項。", map:"https://maps.app.goo.gl/gWQamTH2nAKv7Zc1A", navQ:"우도섬소나이"},
-  {area:"牛島", name:"Place Udo", kr:"플레이스우도", cat:"cafe", backup:true, note:"牛島海景咖啡廳，適合環島騎車途中休息。", map:"https://maps.app.goo.gl/nSGEFruoZiauzNLPA", navQ:"플레이스우도"},
-  {area:"牛島", name:"Udo Sand", kr:"우도샌드", cat:"cafe", backup:true, note:"牛島人氣咖啡廳，招牌花生相關飲品甜點，牛島以花生聞名可順道一嚐。", map:"https://maps.app.goo.gl/MfqAW6kdG2DM1AEW8", navQ:"우도샌드"},
+  {area:"牛島", name:"Sumsonai", kr:"우도섬소나이", cat:"rest", backup:true, note:"牛島上的餐廳，環島途中補充體力的選項。營業時間請以Naver地圖現場確認。", map:"https://maps.app.goo.gl/gWQamTH2nAKv7Zc1A", navQ:"우도섬소나이"},
+  {area:"牛島", name:"Place Udo", kr:"플레이스우도", cat:"cafe", backup:true, note:"牛島海景咖啡廳，適合環島騎車途中休息。營業時間請以Naver地圖現場確認。", map:"https://maps.app.goo.gl/nSGEFruoZiauzNLPA", navQ:"플레이스우도"},
+  {area:"牛島", name:"Udo Sand", kr:"우도샌드", cat:"cafe", backup:true, note:"牛島人氣咖啡廳，招牌花生相關飲品甜點，牛島以花生聞名可順道一嚐。營業時間請以Naver地圖現場確認。", map:"https://maps.app.goo.gl/MfqAW6kdG2DM1AEW8", navQ:"우도샌드"},
   // 首爾
-  {area:"首爾", name:"乙支路烤肉店", kr:"을지갈매기", cat:"rest", backup:true, note:"原Day7晚餐，已改排韓牛熟成肉館by해봉，此家改為備案。招牌豬頸肉，注意週一公休。", map:"https://maps.app.goo.gl/Mw6DZDg8CRgYTCDZA", navQ:"을지갈매기"},
-  {area:"首爾", name:"馬鈴薯煎餅 Sinsajeon", kr:"신사전", cat:"rest", backup:false, note:"Day6備選晚餐/宵夜，招牌馬鈴薯煎餅及蜂巢瑪格麗。", navQ:"신사전"},
-  {area:"首爾", name:"奶油熟成豬 Ppasam", kr:"빠삼", cat:"rest", backup:true, note:"Day6另一備案，招牌奶油熟成豬肩肉，肉質軟嫩多汁。", navQ:"빠삼"},
-  {area:"首爾", name:"Maman Gelato 聖水店", kr:"마망젤라또 성수점", cat:"cafe", backup:false, note:"Day6下午茶已排定，義式冰淇淋專門店。", map:"https://maps.app.goo.gl/fvzQtvQsCxhVsMYQ6", navQ:"마망젤라또 성수점"},
-  {area:"首爾", name:"朝朝刀削麵（市廳店）", kr:"조조칼국수 시청점", cat:"rest", backup:true, note:"首爾市廳站附近的刀削麵連鎖店，適合當快速午餐。", map:"https://maps.app.goo.gl/E7taU1HR3dAhgM6YA", navQ:"조조칼국수 시청점"},
-  {area:"首爾", name:"韓貞仙（聖水店）", kr:"한정선 성수점", cat:"cafe", backup:true, note:"聖水洞人氣甜點咖啡廳，逛完聖水商圈可順道休息。", map:"https://maps.app.goo.gl/X3KbEr6oJ4XQmnXE8", navQ:"한정선 성수점"},
-  {area:"首爾", name:"水芹菜火鍋（聖水店）", kr:"능동미나리 성수", cat:"rest", backup:true, note:"聖水洞水芹菜涮肉鍋，清爽解膩，適合逛街後的晚餐。", map:"https://maps.app.goo.gl/qmgjpfy3crjyz8G8A", navQ:"능동미나리 성수"},
-  {area:"首爾", name:"터틀힙（延南店）", kr:"터틀힙 연남", cat:"cafe", backup:true, note:"延南洞氣氛咖啡廳，適合安排在延南／弘大一帶行程中。", map:"https://maps.app.goo.gl/UGkSQ7ywGZGWzDvK8", navQ:"터틀힙 연남"},
-  {area:"首爾", name:"自然島鹽麵包（延南店）", kr:"자연도소금빵 연남점", cat:"cafe", backup:true, note:"鹽可頌人氣名店，延南洞分店，建議開店前往避開排隊人潮。", map:"https://maps.app.goo.gl/NHz8oB14wmK3Zthh7", navQ:"자연도소금빵 연남점"},
-  {area:"首爾", name:"無垢屋（景福宮）", kr:"무구옥", cat:"rest", backup:true, note:"景福宮周邊餐廳，逛完古宮可安排在附近用餐。", map:"https://maps.app.goo.gl/VxhZR286BsGKEmY29", navQ:"무구옥 경복궁"},
-  {area:"首爾", name:"韓牛熟成肉館 by 해봉", kr:"숙성육관by해봉", cat:"rest", backup:false, note:"Day7晚餐已排定，招牌熟成韓牛，可比較不同部位口感。", map:"https://maps.app.goo.gl/kUZMNjqF4WfJvEx37", navQ:"숙성육관 by 해봉"},
+  {area:"首爾", name:"乙支路烤肉店", kr:"을지갈매기", cat:"rest", backup:true, hours:"17:00–23:00", closed:"週一（W1）", note:"原Day7晚餐，已改排韓牛熟成肉館by해봉，此家改為備案。招牌豬頸肉。", map:"https://maps.app.goo.gl/Mw6DZDg8CRgYTCDZA", navQ:"을지갈매기"},
+  {area:"首爾", name:"馬鈴薯煎餅 Sinsajeon", kr:"신사전", cat:"rest", backup:false, hours:"11:00–25:00（凌晨1點）", closed:"無", note:"Day6備選晚餐/宵夜，招牌馬鈴薯煎餅及蜂巢瑪格麗。", navQ:"신사전"},
+  {area:"首爾", name:"奶油熟成豬 Ppasam", kr:"빠삼", cat:"rest", backup:true, hours:"16:30–22:30", closed:"無", note:"Day6另一備案，招牌奶油熟成豬肩肉，肉質軟嫩多汁。", navQ:"빠삼"},
+  {area:"首爾", name:"Maman Gelato 聖水店", kr:"마망젤라또 성수점", cat:"cafe", backup:false, hours:"11:30–21:00", closed:"無", note:"Day6下午茶已排定，義式冰淇淋專門店。", map:"https://maps.app.goo.gl/fvzQtvQsCxhVsMYQ6", navQ:"마망젤라또 성수점"},
+  {area:"首爾", name:"朝朝刀削麵（市廳店）", kr:"조조칼국수 시청점", cat:"rest", backup:true, note:"首爾市廳站附近的刀削麵連鎖店，適合當快速午餐。營業時間請以Naver地圖現場確認。", map:"https://maps.app.goo.gl/E7taU1HR3dAhgM6YA", navQ:"조조칼국수 시청점"},
+  {area:"首爾", name:"韓貞仙（聖水店）", kr:"한정선 성수점", cat:"cafe", backup:true, note:"聖水洞人氣甜點咖啡廳，逛完聖水商圈可順道休息。營業時間請以Naver地圖現場確認。", map:"https://maps.app.goo.gl/X3KbEr6oJ4XQmnXE8", navQ:"한정선 성수점"},
+  {area:"首爾", name:"水芹菜火鍋（聖水店）", kr:"능동미나리 성수", cat:"rest", backup:true, note:"聖水洞水芹菜涮肉鍋，清爽解膩，適合逛街後的晚餐。營業時間請以Naver地圖現場確認。", map:"https://maps.app.goo.gl/qmgjpfy3crjyz8G8A", navQ:"능동미나리 성수"},
+  {area:"首爾", name:"터틀힙（延南店）", kr:"터틀힙 연남", cat:"cafe", backup:true, note:"延南洞氣氛咖啡廳，適合安排在延南／弘大一帶行程中。營業時間請以Naver地圖現場確認。", map:"https://maps.app.goo.gl/UGkSQ7ywGZGWzDvK8", navQ:"터틀힙 연남"},
+  {area:"首爾", name:"自然島鹽麵包（延南店）", kr:"자연도소금빵 연남점", cat:"cafe", backup:true, note:"鹽可頌人氣名店，延南洞分店，建議開店前往避開排隊人潮。營業時間請以Naver地圖現場確認。", map:"https://maps.app.goo.gl/NHz8oB14wmK3Zthh7", navQ:"자연도소금빵 연남점"},
+  {area:"首爾", name:"無垢屋（景福宮）", kr:"무구옥", cat:"rest", backup:true, note:"景福宮周邊餐廳，逛完古宮可安排在附近用餐。營業時間請以Naver地圖現場確認。", map:"https://maps.app.goo.gl/VxhZR286BsGKEmY29", navQ:"무구옥 경복궁"},
+  {area:"首爾", name:"韓牛熟成肉館 by 해봉", kr:"숙성육관by해봉", cat:"rest", backup:false, hours:"平日11:30–22:00（休息14:30–17:30，L.O.21:00）／週末12:00–22:00（L.O.21:00）", closed:"無固定公休", note:"Day7晚餐已排定，招牌熟成韓牛，可比較不同部位口感。⚠️實際位於首爾麻浦區公德（염리동），並非乙支路，跟北村韓屋村有一段車程距離，請留意交通時間。", map:"https://maps.app.goo.gl/kUZMNjqF4WfJvEx37", navQ:"숙성육관 by 해봉"},
+  // 外送
+  {area:"外送", name:"PURADAK 푸라닭", kr:"푸라닭", cat:"rest", backup:true, avail:"濟州、首爾都有分店，兩地皆可點外送", note:"韓式創意炸雞外送品牌。人氣第一招牌블랙알리오（黑蒜醬炸雞，蒜香濃郁不辣）；第二人氣고추마요치킨（辣美乃滋炸雞，微辣）；不吃辣可選마마치（甜蒜味，完全不辣）；能吃辣可挑戰마불로 악마（火雞麵醬基底，非常辣）。兩人推薦點半半（블랙알리오＋씬후라이드半半）套餐附1.25L飲料，加點招牌기름떡볶이（油炒年糕）當配菜。"},
+  {area:"外送", name:"nomore pizza 노모어피자", kr:"노모어피자", cat:"rest", backup:true, avail:"⚠️目前只確認首爾有分店，濟州是否有分店查不到明確資料，建議只在首爾點；濟州如果想點，麻煩先用外送App實測有沒有店家可選", note:"人氣披薩外送品牌。招牌옥수수새우피자（玉米蝦披薩）跟바질마스카포네뇨끼피자（義式馬斯卡彭起司麵疙瘩披薩）是店內銷量前二；配菜推薦매콤 김치볶음전（起司烤辣炒泡菜飯，招牌配菜）；喜歡義大利麵可加點페퍼로니 파스타（辣味腸番茄起司焗麵）。多人分享建議一披薩＋一配菜＋一義大利麵搭配著吃。"},
+  {area:"外送", name:"獵奇炒年糕 엽기떡볶이", kr:"엽기떡볶이", cat:"rest", backup:true, avail:"首爾分店多；濟州只有極少數分店（如濟州市廳店），選擇有限，出發前建議先用外送App確認住宿地點能不能叫到", note:"辣度分1~5級，第一次吃強烈建議點1단계（착한맛/最不辣），2단계開始就非常辣，能吃辣的人才往上挑戰。怕辣也想吃可以改點로제（奶油辣）或짜장（炸醬）口味，辣度會溫和很多。招牌組合是허니콤보（蜂蜜炸雞＋年糕組合）；辣度太high時搭配쿨피스（韓國牛奶風味飲料）、계란찜（蒸蛋）、주먹밥（飯團）解辣最有效。"},
   // 其他備選（地區待確認，出發前請自行以地圖連結核對）
-  {area:"其他備選", name:"生魚片 통발", kr:"통발", cat:"rest", backup:true, note:"生魚片專門店，地區待確認，請以地圖連結核對位置後再安排。", map:"https://maps.app.goo.gl/mNeA6kpdbRnCnoom8", navQ:"통발"},
-  {area:"其他備選", name:"蝦料理 왓새우", kr:"왓새우", cat:"rest", backup:true, note:"蝦料理專門店，地區待確認，請以地圖連結核對位置後再安排。", map:"https://maps.app.goo.gl/Cymg7G8kxAcaqpyn7", navQ:"왓새우"},
-  {area:"其他備選", name:"콘드에뻬뻬", kr:"콘드에뻬뻬", cat:"rest", backup:true, note:"地區待確認，請以地圖連結核對位置後再安排。", map:"https://maps.app.goo.gl/FBiF546Y1KkiMqdG8", navQ:"콘드에뻬뻬"},
-  {area:"其他備選", name:"炸醬麵 요리왕", kr:"요리왕", cat:"rest", backup:true, note:"炸醬麵專門店，地區待確認，請以地圖連結核對位置後再安排。", map:"https://maps.app.goo.gl/iGtSM79SsM5H4sYM7", navQ:"요리왕"},
-  {area:"其他備選", name:"Baerong Garden", kr:"", cat:"rest", backup:true, note:"地區待確認，請以地圖連結核對位置後再安排。", map:"https://maps.app.goo.gl/qcm3WAKrLggyFXwJ9", navQ:"Baerong Garden"},
-  {area:"其他備選", name:"棲霞軒", kr:"서담헌", cat:"rest", backup:true, note:"地區待確認，請以地圖連結核對位置後再安排。", map:"https://maps.app.goo.gl/KRUyumQY6jJ7VGXm9", navQ:"서담헌"},
-  {area:"其他備選", name:"애성회관한우곰탕", kr:"애성회관한우곰탕", cat:"rest", backup:true, note:"韓牛牛骨湯專門店，地區待確認，請以地圖連結核對位置後再安排。", map:"https://maps.app.goo.gl/Dk1jRUbwq5cBUXrC9", navQ:"애성회관한우곰탕"},
-  {area:"其他備選", name:"青瓦屋", kr:"", cat:"rest", backup:true, note:"地區待確認，請以地圖連結核對位置後再安排。", map:"https://maps.app.goo.gl/z761qV8CrziepjNP7", navQ:"青瓦屋"},
-  {area:"其他備選", name:"On-Off", kr:"", cat:"rest", backup:true, note:"地區待確認，請以地圖連結核對位置後再安排。", map:"https://maps.app.goo.gl/7QWEjK8yApAy5RSg8", navQ:"On-Off"},
-  {area:"其他備選", name:"水蜜桃冰 Cafe KOSSETTE", kr:"", cat:"cafe", backup:true, note:"水蜜桃冰甜點咖啡廳，地區待確認，請以地圖連結核對位置後再安排。", map:"https://maps.app.goo.gl/rpgAM3iCWDHVmqg2A", navQ:"KOSSETTE"},
-  {area:"其他備選", name:"Ilgi", kr:"일기", cat:"cafe", backup:true, note:"地區待確認，請以地圖連結核對位置後再安排。", map:"https://maps.app.goo.gl/smxY7FREV6E2Dd8v5", navQ:"일기"},
-  {area:"其他備選", name:"Mandong Bakery", kr:"", cat:"cafe", backup:true, note:"地區待確認，請以地圖連結核對位置後再安排。", map:"https://maps.app.goo.gl/Xqdh3sHSAugyrxDc6", navQ:"Mandong Bakery"},
-  {area:"其他備選", name:"瑪格麗冰淇淋 Lick Sip", kr:"릭십", cat:"cafe", backup:true, note:"瑪格麗特風味冰淇淋，地區待確認，請以地圖連結核對位置後再安排。", map:"https://maps.app.goo.gl/YZ8PKH6Qh8fEgL9U6", navQ:"릭십"},
-  {area:"其他備選", name:"orrrn", kr:"", cat:"cafe", backup:true, note:"地區待確認，請以地圖連結核對位置後再安排。", map:"https://maps.app.goo.gl/VP2wKvHQw3tDGENf8", navQ:"orrrn"},
+  {area:"其他備選", name:"生魚片 통발", kr:"통발", cat:"rest", backup:true, note:"生魚片專門店，地區待確認，請以地圖連結核對位置後再安排，營業時間現場確認。", map:"https://maps.app.goo.gl/mNeA6kpdbRnCnoom8", navQ:"통발"},
+  {area:"其他備選", name:"蝦料理 왓새우", kr:"왓새우", cat:"rest", backup:true, note:"蝦料理專門店，地區待確認，請以地圖連結核對位置後再安排，營業時間現場確認。", map:"https://maps.app.goo.gl/Cymg7G8kxAcaqpyn7", navQ:"왓새우"},
+  {area:"其他備選", name:"콘드에뻬뻬", kr:"콘드에뻬뻬", cat:"rest", backup:true, note:"地區待確認，請以地圖連結核對位置後再安排，營業時間現場確認。", map:"https://maps.app.goo.gl/FBiF546Y1KkiMqdG8", navQ:"콘드에뻬뻬"},
+  {area:"其他備選", name:"炸醬麵 요리왕", kr:"요리왕", cat:"rest", backup:true, note:"炸醬麵專門店，地區待確認，請以地圖連結核對位置後再安排，營業時間現場確認。", map:"https://maps.app.goo.gl/iGtSM79SsM5H4sYM7", navQ:"요리왕"},
+  {area:"其他備選", name:"Baerong Garden", kr:"", cat:"rest", backup:true, note:"地區待確認，請以地圖連結核對位置後再安排，營業時間現場確認。", map:"https://maps.app.goo.gl/qcm3WAKrLggyFXwJ9", navQ:"Baerong Garden"},
+  {area:"其他備選", name:"棲霞軒", kr:"서담헌", cat:"rest", backup:true, note:"地區待確認，請以地圖連結核對位置後再安排，營業時間現場確認。", map:"https://maps.app.goo.gl/KRUyumQY6jJ7VGXm9", navQ:"서담헌"},
+  {area:"其他備選", name:"애성회관한우곰탕", kr:"애성회관한우곰탕", cat:"rest", backup:true, note:"韓牛牛骨湯專門店，地區待確認，請以地圖連結核對位置後再安排，營業時間現場確認。", map:"https://maps.app.goo.gl/Dk1jRUbwq5cBUXrC9", navQ:"애성회관한우곰탕"},
+  {area:"其他備選", name:"青瓦屋", kr:"", cat:"rest", backup:true, note:"地區待確認，請以地圖連結核對位置後再安排，營業時間現場確認。", map:"https://maps.app.goo.gl/z761qV8CrziepjNP7", navQ:"青瓦屋"},
+  {area:"其他備選", name:"On-Off", kr:"", cat:"rest", backup:true, note:"地區待確認，請以地圖連結核對位置後再安排，營業時間現場確認。", map:"https://maps.app.goo.gl/7QWEjK8yApAy5RSg8", navQ:"On-Off"},
+  {area:"其他備選", name:"水蜜桃冰 Cafe KOSSETTE", kr:"", cat:"cafe", backup:true, note:"水蜜桃冰甜點咖啡廳，地區待確認，請以地圖連結核對位置後再安排，營業時間現場確認。", map:"https://maps.app.goo.gl/rpgAM3iCWDHVmqg2A", navQ:"KOSSETTE"},
+  {area:"首爾", name:"Ilgi 일기（延南店）", kr:"일기", cat:"cafe", backup:true, hours:"10:00–20:00（L.O.17:20）", closed:"每週日", note:"確認位於延南洞，地址18 Seongmisan-ro 29an-gil, Yeonnam-dong。招牌黑胡椒法式吐司（후추프렌치토스트），氣氛安靜像走進日本巷弄咖啡廳，適合安排在延南／弘大行程中。", map:"https://maps.app.goo.gl/m1RMKoAX83UJZHfu6", navQ:"일기 연남동"},
+  {area:"其他備選", name:"Mandong Bakery", kr:"", cat:"cafe", backup:true, note:"地區待確認，請以地圖連結核對位置後再安排，營業時間現場確認。", map:"https://maps.app.goo.gl/Xqdh3sHSAugyrxDc6", navQ:"Mandong Bakery"},
+  {area:"其他備選", name:"瑪格麗冰淇淋 Lick Sip", kr:"릭십", cat:"cafe", backup:true, note:"瑪格麗特風味冰淇淋，地區待確認，請以地圖連結核對位置後再安排，營業時間現場確認。", map:"https://maps.app.goo.gl/YZ8PKH6Qh8fEgL9U6", navQ:"릭십"},
+  {area:"其他備選", name:"orrrn", kr:"", cat:"cafe", backup:true, note:"地區待確認，請以地圖連結核對位置後再安排，營業時間現場確認。", map:"https://maps.app.goo.gl/VP2wKvHQw3tDGENf8", navQ:"orrrn"},
 ];
 
 const SHOP_AREAS = ["全部","聖水洞 Seongsu","狎鷗亭・道山","東大門","其他"];
@@ -862,6 +1004,14 @@ const FLIGHTS = [
 /* =====================================================
    RENDER
 ===================================================== */
+function hoursLine(hours, closed){
+  if(!hours && !closed) return '';
+  const parts = [];
+  if(hours) parts.push(`🕐 ${hours}`);
+  if(closed) parts.push(`<span style="color:var(--coral);">🚫 公休：${closed}</span>`);
+  return `<div class="hours-line">${parts.join('　')}</div>`;
+}
+
 function renderTickets(){
   const el = document.getElementById('ticketStrip');
   el.innerHTML = FLIGHTS.map(f=>`
@@ -986,6 +1136,7 @@ function renderDayPanel(){
         <span class="nm">${sp.name}</span>
         ${catTag(sp.cat)}
       </div>
+      ${hoursLine(sp.hours, sp.closed)}
       ${sp.note? `<div class="note">${sp.note}</div>`:''}
       <div class="btnrow">${mapBtns(sp.map, sp.navQ)}</div>
     </div>
@@ -1024,6 +1175,8 @@ function renderFoodList(){
         <div class="food-item">
           <div class="fi-l">
             <div class="fi-nm">${f.name} ${catTag(f.cat)} ${f.backup? '<span class="badge-backup">備案</span>':''}</div>
+            ${f.avail? `<div class="avail-line">📍 ${f.avail}</div>`:''}
+            ${hoursLine(f.hours, f.closed)}
             <div class="fi-note">${f.note}</div>
           </div>
           <div class="fi-r">
